@@ -1,0 +1,48 @@
+.contact-builder-section {
+  padding: 3.5rem 1rem;
+  background: linear-gradient(180deg,#ffffff,#fbfdff);
+}
+
+.cb-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.cb-sub {
+  color: #6c757d;
+  margin-bottom: 1.25rem;
+}
+
+.cb-form .form-control,
+.cb-form .form-select {
+  border-radius: 0.65rem;
+  padding: 0.75rem 1rem;
+}
+
+.cb-submit-btn {
+  border-radius: 0.65rem;
+  font-weight: 700;
+  padding: 0.9rem 1rem;
+}
+
+.cb-side {
+  background: #f8fbff;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.cb-side h5 {
+  margin-bottom: 0.5rem;
+}
+
+.cb-tips {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #555;
+}
+
+@media (max-width: 767.98px) {
+  .cb-side { margin-top: 1rem; }
+}
