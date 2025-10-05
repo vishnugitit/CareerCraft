@@ -31,7 +31,7 @@ const Contact = () => {
 
     if (name.trim() && email.trim() && project.trim()) {
       emailjs
-        .sendForm("service_f9f6ffx", "template_2t6pr9l", form.current, {
+        .sendForm("service_myxbp1c", "template_oj36uhk", form.current, {
           publicKey: "oQjjRjplihvV0zZOA",
         })
         .then(() => {
