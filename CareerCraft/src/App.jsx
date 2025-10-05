@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css"
+import "./App.css";
 import Header from "./pages/Header/Header";
 import Hero from "./components/Home/Hero";
 import Features from "./pages/Features/Features";
@@ -7,8 +7,8 @@ import Templates from "./components/Templates/Templates";
 import Pricing from "./components/Pricing/Pricing";
 // import Testimonials from "./pages/Testimonials/Testimonials";
 import FAQ from "./pages/FAQ/FAQ";
+import GetStarted from "./components/GetStarted/GetStarted";
 
-import GetStarted from "./components/getStarted/getStarted";
 // import Payment from "./components/Payment/Payment";
 import Contact from "./components/Contact/Contact";
 import Footer from "./pages/Footer/Footer";
@@ -17,15 +17,15 @@ const App = () => {
     <div>
       <Header />
       <Hero />
-      <Features/>
+      <Features />
       <Templates />
       <Pricing />
       {/* <Testimonials /> */}
-      <FAQ/>
- 
-     <GetStarted/>
+      <FAQ />
+
+      <GetStarted />
       {/* <Payment/> */}
-      <Contact/>
+      <Contact />
       <Footer />
     </div>
   );
