@@ -1,0 +1,119 @@
+/* Overlay */
+.alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* softer background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px); /* modern blur effect */
+  z-index: 9999;
+}
+
+/* Alert Box */
+.alert-box {
+  background: #fff;
+  padding: 24px 32px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.3s ease;
+}
+
+/* Message Text */
+.alert-message {
+  color: #16a34a; /* nice green */
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* OK Button */
+.alert-box button {
+  padding: 10px 20px;
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.alert-box button:hover {
+  background: #15803d; /* darker green */
+  transform: translateY(-2px);
+}
+
+.alert-box button:active {
+  transform: scale(0.95);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* Overlay */
+.alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+  z-index: 9999;
+}
+
+/* Alert Box */
+.alert-box {
+  background: #fff;
+  padding: 24px 32px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.3s ease;
+}
+
+/* Message Text (default) */
+.alert-message {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* ✅ Success Alert */
+.alert-success .alert-message {
+  color: #16a34a; /* green */
+}
+
+.alert-success button {
+  background: #16a34a;
+}
+
+.alert-success button:hover {
+  background: #15803d;
+}

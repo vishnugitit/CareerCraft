@@ -1,13 +1,17 @@
 import React from "react";
-import Header from "./pages/Header";
-import Hero from "./components/Hero";
-import Features from "./pages/Features";
-import Templates from "./pages/Templates";
-import Pricing from "./pages/Pricing";
-import Testimonials from "./pages/Testimonials";
-import FAQ from "./pages/FAQ";
-import Contact from "./pages/Contact";
-import Footer from "./components/Footer";
+import "./App.css"
+import Header from "./pages/Header/Header";
+import Hero from "./components/Home/Hero";
+import Features from "./pages/Features/Features";
+import Templates from "./components/Templates/Templates";
+import Pricing from "./components/Pricing/Pricing";
+// import Testimonials from "./pages/Testimonials/Testimonials";
+import FAQ from "./pages/FAQ/FAQ";
+
+import GetStarted from "./components/getStarted/getStarted";
+// import Payment from "./components/Payment/Payment";
+import Contact from "./components/Contact/Contact";
+import Footer from "./pages/Footer/Footer";
 const App = () => {
   return (
     <div>
@@ -16,8 +20,11 @@ const App = () => {
       <Features/>
       <Templates />
       <Pricing />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <FAQ/>
+ 
+     <GetStarted/>
+      {/* <Payment/> */}
       <Contact/>
       <Footer />
     </div>

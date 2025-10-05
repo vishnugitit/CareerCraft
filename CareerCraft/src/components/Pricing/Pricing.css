@@ -1,0 +1,334 @@
+/* Pricing.css — responsive, accessible, and Swiper-friendly styles
+
+Changes made:
+- Increased spacing between cards globally.
+- Added explicit extra bottom padding so CTAs (buttons) never visually merge with the card edges.
+- Increased spacing between feature list and CTA and between cards and neighboring slides.
+- Replaced the simple border-on-hover with a visible hover ring (box-shadow) that cleanly wraps the card edge so the "border" effect covers the whole card.
+- Kept accessible focus-visible styles.
+*/
+
+:root {
+  --bg: #f7fafc;
+  --card-bg: #ffffff;
+  --muted: #6b7280;
+  --accent: #06b6d4;
+  --accent-2: #7c3aed;
+  --success: #10b981;
+  --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --radius: 14px;
+  --gap-xs: 12px;
+  --gap-sm: 18px;
+  --gap-md: 24px;
+  --gap-lg: 36px; /* increased space between cards */
+  --container-max: 1280px;
+  --card-bottom-padding: 34px; /* extra space between content and card bottom */
+  --card-hover-ring: rgba(6, 182, 212, 0.14);
+}
+
+.pricing-section {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), var(--bg));
+  padding: 48px 18px 80px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+  color: #0f172a;
+}
+.pricing-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+.pricing-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.pricing-header h2 {
+  font-size: 2rem;
+  margin: 0 0 6px;
+}
+.pricing-header .lead {
+  color: var(--muted);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.pricing-swiper-wrap {
+  width: 100%;
+  --card-min-width: 280px;
+}
+
+/* Fallback grid: use a larger gap so cards never touch */
+.fallback-grid {
+  display: grid;
+  gap: var(--gap-lg);
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  align-items: start;
+}
+
+.pricing-card {
+  background: linear-gradient(180deg, var(--card-bg), #fbfdff);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px 22px calc(var(--card-bottom-padding) + 6px);
+  display: flex;
+  flex-direction: column;
+  min-height: 380px;
+  transition: transform 260ms ease, box-shadow 260ms ease,
+    border-color 260ms ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: visible;
+  background-clip: padding-box; /* ensures hover ring / border sits correctly around the card */
+}
+.pricing-card.popular {
+  border-color: rgba(124, 58, 237, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Hover ring that fully wraps the card (visually similar to a border but covers the full card) */
+.pricing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.12), 0 0 0 3px var(--card-hover-ring);
+  border-color: transparent; /* keep underlying border transparent so the ring is dominant */
+}
+
+/* strong focus style for keyboard users */
+.pricing-card:focus-within {
+  box-shadow: 0 22px 56px rgba(2, 6, 23, 0.14),
+    0 0 0 4px rgba(124, 58, 237, 0.12);
+  transform: translateY(-6px);
+}
+
+.badge-popular {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: white;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.12);
+  z-index: 3;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.card-head h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+.card-head .sub {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.price {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #0b1220;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 16px;
+  display: grid;
+  gap: 10px;
+}
+.feature-list li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+.feature-list .f-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.feature-list .f-text {
+  flex: 1;
+}
+
+@keyframes spin360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.icon-spin {
+  display: inline-block;
+  animation: spin360 1.6s linear infinite;
+}
+
+/* CTA area: push to bottom and ensure extra spacing from content and from card bottom */
+.card-cta {
+  margin-top: auto; /* push to bottom when card has space */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px; /* more breathing room between button and small-note */
+  margin-bottom: 6px; /* little cushion from the very bottom */
+}
+.choose-btn {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #fff;
+  border: none;
+  padding: 12px 16px;
+  font-size: 0.98rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 26px rgba(7, 89, 133, 0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 140ms ease;
+}
+.choose-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(7, 89, 133, 0.12);
+}
+.small-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Ensure slides have breathing room even when Swiper manages spacing. Adds padding on slide sides so content never touches neighbour */
+.pricing-swiper .swiper-slide {
+  display: flex;
+  align-items: stretch;
+  padding-left: calc(var(--gap-lg) / 4);
+  padding-right: calc(var(--gap-lg) / 4);
+}
+.pricing-swiper .pricing-card {
+  width: 100%;
+}
+.pricing-swiper .swiper-wrapper {
+  padding-left: calc(var(--gap-lg) / 8);
+  padding-right: calc(var(--gap-lg) / 8);
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 767px) {
+  .fallback-grid {
+    grid-template-columns: 1fr;
+    gap: calc(var(--gap-lg) / 1.6);
+  }
+  .pricing-card {
+    min-height: 420px;
+    padding: 20px 18px calc(var(--card-bottom-padding) + 8px);
+  }
+  /* CTA placed below content and given extra separation */
+  .card-cta {
+    order: 99;
+    margin-top: 34px;
+    gap: 26px;
+  }
+  .choose-btn {
+    width: 100%;
+  }
+  .feature-list {
+    gap: 12px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .fallback-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(var(--gap-lg) / 1.3);
+  }
+  .pricing-card {
+    min-height: 420px;
+  }
+  .card-cta {
+    order: 99;
+    margin-top: 36px;
+    gap: 26px;
+  }
+  .choose-btn {
+    width: 100%;
+  }
+  .feature-list {
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .fallback-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap-lg);
+  }
+  .pricing-card {
+    min-height: 460px;
+    padding: 26px;
+  }
+  .card-cta {
+    order: 0;
+    margin-top: 30px;
+    gap: 22px;
+  }
+  .choose-btn {
+    width: auto;
+    align-self: center;
+    min-width: 160px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .fallback-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: var(--container-max);
+    margin: auto;
+    gap: calc(var(--gap-lg) + 6px);
+  }
+  .pricing-card {
+    min-height: 480px;
+  }
+}
+
+/* Accessibility & small niceties */
+.feature-list li:before {
+  content: "";
+  display: inline-block;
+  width: 0;
+}
+.pricing-card * {
+  box-sizing: border-box;
+}
+.pricing-card .f-text {
+  word-break: break-word;
+  white-space: normal;
+}
+.f-icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.swiper-pagination-bullets {
+  bottom: -18px;
+}
+.swiper-pagination-bullet {
+  background: rgba(15, 23, 42, 0.12);
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transform: scale(1.05);
+}
+
+@media (max-width: 420px) {
+  .pricing-section {
+    padding: 34px 12px 80px;
+  }
+}
+
+/* End of file */
