@@ -1,13 +1,14 @@
-/* Features.css
-   Responsive 6-card features grid for Portfolio Mate
-   - Poppins font
-   - Small: 2 cols, Medium: 3 cols, Large: 6 cols
-   - Hover transitions, subtle borders, background card style
-*/
+/* ===============================
+   Features.css (upgraded, responsive)
+   Replace entire file with this block
+   - fluid grid: auto-fit / minmax
+   - prevents inner scrollbars & clipping
+   - adapts across all devices
+   =============================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-:root{
+:root {
   --page-bg: #f7fbff;
   --card-bg: #ffffff;
   --muted: #6b7785;
@@ -16,32 +17,38 @@
   --card-shadow: 0 12px 28px rgba(14,30,37,0.06);
   --card-shadow-hover: 0 22px 60px rgba(14,30,37,0.12);
   --radius: 12px;
-  --gap: 20px;
+  --container-max: 1320px;
 }
 
+/* base box model */
 * { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 
+/* SECTION - no inner overflow */
 .features-section {
   background: linear-gradient(180deg, var(--page-bg), #eef6ff);
-  padding: 56px 18px;
-  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  padding: clamp(28px, 4vw, 56px) 16px; /* fluid vertical padding */
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   color: #0b2130;
+  width: 100%;
+  overflow: visible; /* important: avoid internal clipping/scroll */
 }
 
-/* inner wrapper centers content and limits width */
+/* inner wrapper - center and constrain */
 .features-inner {
-  max-width: 1320px;
+  max-width: var(--container-max);
   margin: 0 auto;
-  padding: 0 18px;
+  padding: 0 12px;
+  width: 100%;
 }
 
 /* header */
 .features-header {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: clamp(16px, 2.2vw, 28px);
 }
 .features-header h2 {
-  font-size: 1.9rem;
+  font-size: clamp(1.25rem, 2vw, 1.9rem);
   margin: 0 0 8px 0;
   font-weight: 700;
   color: #0b2030;
@@ -49,107 +56,126 @@
 .features-header .subtitle {
   margin: 0;
   color: var(--muted);
-  font-size: 1rem;
+  font-size: clamp(0.88rem, 1.1vw, 1rem);
+  max-width: 68ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* grid layout */
-/* default: small devices -> 2 columns */
+/* GRID - fluid and safe: auto-fit + minmax prevents clipped cards */
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+  gap: clamp(12px, 1.6vw, 22px);
+  /* auto-fit makes the grid fill available space; min width prevents cards from getting too narrow */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   align-items: stretch;
+  width: 100%;
+  margin-top: 6px;
+  /* ensure grid rows don't create forced overflow */
+  grid-auto-rows: minmax(0, auto);
 }
 
-/* medium: 3 columns (>=768px) */
-@media (min-width: 768px) {
-  .features-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
+/* Safety: grid children must be allowed to shrink inside flex parents */
+.features-grid > * {
+  min-width: 0;
+  min-height: 0;
 }
 
-/* large: 6 columns (>=1200px) */
-@media (min-width: 1200px) {
-  .features-grid {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 22px;
-  }
-}
-
-/* card */
+/* FEATURE CARD - flexible height (no fixed min-height) */
 .feature-card {
   background: var(--card-bg);
   border-radius: var(--radius);
-  padding: 20px;
+  padding: clamp(12px, 1.2vw, 20px);
   border: 1px solid rgba(14,30,37,0.04);
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
   gap: 12px;
   transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, border-color 220ms ease;
-  min-height: 160px;
+  min-height: 0; /* lets content size card naturally */
+  min-width: 0;  /* prevents forced horizontal overflow */
 }
 
-/* hover / focus state */
+/* hover/focus */
 .feature-card:hover,
 .feature-card:focus-within {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: var(--card-shadow-hover);
   border-color: rgba(37,99,235,0.12);
   outline: none;
 }
 
-/* icon circle */
+/* ICON */
 .feature-icon {
-  width: 56px;
-  height: 56px;
+  width: clamp(44px, 5vw, 56px);
+  height: clamp(44px, 5vw, 56px);
   border-radius: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: clamp(16px, 2vw, 20px);
   color: white;
   background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
   box-shadow: 0 8px 18px rgba(37,99,235,0.08);
-  transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease;
+  transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
+  flex: 0 0 auto;
 }
+/* ensure svg icon scales */
+.feature-icon svg { width: 60%; height: 60%; display: block; }
 
-/* enlarge icon slightly on hover of card */
+/* icon hover pop */
 .feature-card:hover .feature-icon {
   transform: translateY(-4px) scale(1.04);
   filter: saturate(1.05);
 }
 
-/* title and description */
+/* TITLE & DESC */
 .feature-title {
   margin: 0;
-  font-size: 1rem;
+  font-size: clamp(0.95rem, 1.3vw, 1rem);
   font-weight: 600;
   color: #0b2130;
+  line-height: 1.15;
 }
-
 .feature-desc {
   margin: 0;
   color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.25;
+  font-size: clamp(0.85rem, 1.05vw, 0.95rem);
+  line-height: 1.35;
   flex: 1 1 auto;
+  min-width: 0;
 }
 
-/* ensure good spacing in very narrow screens */
+/* SMALL SCREEN TIGHTEN */
 @media (max-width: 420px) {
-  .features-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .feature-card { padding: 14px; min-height: 140px; }
-  .feature-icon { width:48px; height:48px; font-size:18px; }
-  .features-header h2 { font-size:1.6rem; }
+  .features-section { padding: 20px 10px; }
+  .features-grid { gap: 10px; grid-template-columns: repeat(2, 1fr); }
+  .feature-card { padding: 10px; }
+  .feature-icon { width: 44px; height: 44px; }
+  .features-header h2 { font-size: 1.4rem; }
 }
 
-/* accessibility: focus outline for keyboard users */
+/* MED/LARGE tweaks */
+@media (min-width: 768px) {
+  .features-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+  .features-inner { padding: 0 14px; }
+}
+
+@media (min-width: 1024px) {
+  .features-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  .features-inner { max-width: calc(var(--container-max) + 80px); }
+}
+
+@media (min-width: 1400px) {
+  /* If you want EXACTLY 6 columns on very wide screens, uncomment the line below:
+  .features-grid { grid-template-columns: repeat(6, 1fr); } */
+}
+
+/* Accessibility focus style */
 .feature-card:focus {
   outline: 3px solid rgba(37,99,235,0.12);
   outline-offset: 2px;
 }
 
-/* small utility to center icons inside */
-.feature-icon svg { display: block; }
+/* Helpful debug class (toggle on body.debug in devtools to visualize) */
+body.debug .features-grid * { outline: 1px dashed rgba(255,0,0,0.08); }

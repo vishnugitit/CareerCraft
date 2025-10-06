@@ -13,7 +13,9 @@ import GetStarted from "./components/GetStarted/GetStarted";
 import Contact from "./components/Contact/Contact";
 import Footer from "./pages/Footer/Footer";
 const App = () => {
+      
   return (
+
     <div>
       <Header />
       <Hero />
@@ -26,7 +28,8 @@ const App = () => {
       <GetStarted />
       {/* <Payment/> */}
       <Contact />
-      <Footer />
+    <Footer/>
+      
     </div>
   );
 };

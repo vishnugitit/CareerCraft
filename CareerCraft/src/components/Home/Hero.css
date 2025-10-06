@@ -19,7 +19,10 @@
   --page-padding: 48px;
 }
 
-/* full-page hero */
+/* full-page hero
+   NOTE: padding-top now accounts for the fixed header height and a safe gap
+         so the hero content is never overlapped by the navbar.
+*/
 html,
 body {
   height: 100%;
@@ -29,7 +32,13 @@ body {
   background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
   color: var(--text-dark);
   font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  padding: 56px var(--page-padding);
+  /* ---------- UPDATED: safe top spacing to avoid navbar overlap ---------- */
+  padding-top: calc(
+    var(--header-height-lg, 80px) + 80px
+  ); /* header height + 20px gap */
+  padding-right: var(--page-padding);
+  padding-bottom: var(--page-padding);
+  padding-left: var(--page-padding);
   box-sizing: border-box;
 }
 
@@ -288,8 +297,15 @@ body {
 /* small screens */
 @media (max-width: 719px) {
   .pm-hero {
-    padding: 36px 18px;
+    /* ---------- UPDATED: mobile top padding uses small header height ---------- */
+    padding-top: calc(var(--header-height-sm, 64px) + 20px);
+    /* keep horizontal padding smaller on tiny screens */
+    padding-left: 18px;
+    padding-right: 18px;
+    /* keep bottom padding comfortable */
+    padding-bottom: 36px;
   }
+
   .pm-hero-inner {
     gap: 18px;
   }
@@ -325,4 +341,22 @@ body {
 .pm-hero :focus-visible {
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
   border-radius: 8px;
+}
+
+/* Optional: additional safeguard if your header CSS doesn't set vars:
+   This ensures the hero still offsets safely even if header variables aren't defined.
+*/
+@supports not (
+  (
+    --header-height-lg: 0,
+  )
+) {
+  .pm-hero {
+    padding-top: calc(80px + 20px);
+  } /* default fallback */
+  @media (max-width: 719px) {
+    .pm-hero {
+      padding-top: calc(64px + 20px);
+    }
+  }
 }

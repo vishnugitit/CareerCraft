@@ -7,6 +7,7 @@ import {
   FaDollarSign,
   FaEnvelope,
   FaPlay,
+  FaBell,
 } from "react-icons/fa";
 import logo from "../Header/logo.jpg"; // adjust path if needed
 import "./Header.css";
@@ -95,8 +96,11 @@ const Header = () => {
             <a href="#contact" className="nav-link">
               Contact
             </a>
-            <a href="#getstarted" className="btn-primary">
+            <a href="#GetStarted" className="btn-primary">
               Get Started
+            </a>
+            <a href="#subscribed" className="nav-link">
+              Subscribe
             </a>
           </nav>
 
@@ -143,13 +147,29 @@ const Header = () => {
               <FaEnvelope className="menu-icon" /> Contact
             </a>
           </li>
-          <li>
+
+          {/* <li>
             <a
-             href="#GetStarted"
+              href="#GetStarted"
               className="menu-getstarted"
               onClick={closeMenu}
             >
-              <FaPlay className="menu-icon"  /> Get Started
+              <FaPlay className="menu-icon" /> Get Started
+            </a> */}
+          {/* </li> */}
+          <li>
+            <a
+              href="#GetStarted"
+              // className="menu-getstarted"
+              onClick={closeMenu}
+            >
+              <FaPlay className="menu-icon" /> Get Started
+            </a>
+          </li>
+
+          <li>
+            <a href="#subscribed" onClick={closeMenu}>
+              <FaBell className="menu-icon" /> Subscribe
             </a>
           </li>
         </ul>

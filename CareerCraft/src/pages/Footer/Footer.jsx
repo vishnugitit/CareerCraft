@@ -126,7 +126,7 @@ export default function Footer({
   return (
     <>
       <footer className="pm-footer" role="contentinfo">
-        <div className="max">
+        <div className="max" id="subscribed">
           <div className="pm-row">
             {/* Brand & Subscribe */}
             <div className="pm-brand">

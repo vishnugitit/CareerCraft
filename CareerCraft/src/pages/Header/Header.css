@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
-
 :root {
   --pm-bg: rgba(255, 255, 255, 0.92);
   --pm-accent: #7c3aed;
@@ -155,7 +154,8 @@ body {
   position: fixed;
   left: 0;
   right: 0;
-  top: calc(var(--header-height-sm));
+  /* top: calc(var(--header-height-sm)); */
+   top: calc(var(--header-height-sm) - 60px); /* reduced gap 10px*/
   z-index: 1150;
   background: linear-gradient(
     180deg,

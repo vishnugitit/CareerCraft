@@ -24,7 +24,12 @@ export default function Hero({
   mockImage = "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1400&auto=format&fit=crop&s=7a7b38b7b8f2d3a1d6f3f3b1e0b16f1c",
 }) {
   return (
-    <header  id="home"className="pm-hero" role="banner" aria-label={`${brand.name} hero`}>
+    <header
+      id="home"
+      className="pm-hero"
+      role="banner"
+      aria-label={`${brand.name} hero`}
+    >
       <div className="pm-hero-inner">
         {/* Image (first in DOM) */}
         <div className="hero-media">
@@ -83,7 +88,7 @@ export default function Hero({
           </ul>
 
           <div className="pm-cta">
-            <a 
+            <a
               // href={ctaPrimary.href}
               href="#GetStarted"
               className="btn cta-primary"
