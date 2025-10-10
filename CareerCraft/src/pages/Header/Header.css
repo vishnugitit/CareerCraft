@@ -155,7 +155,7 @@ body {
   left: 0;
   right: 0;
   /* top: calc(var(--header-height-sm)); */
-   top: calc(var(--header-height-sm) - 60px); /* reduced gap 10px*/
+  top: calc(var(--header-height-sm) - 60px); /* reduced gap 10px*/
   z-index: 1150;
   background: linear-gradient(
     180deg,
