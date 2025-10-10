@@ -9,7 +9,7 @@ import {
   FaPlay,
   FaBell,
 } from "react-icons/fa";
-import logo from "../Header/logo.jpg"; // adjust path if needed
+import logo from "../Header/Logo.png"; // adjust path if needed
 import "./Header.css";
 
 const Header = () => {

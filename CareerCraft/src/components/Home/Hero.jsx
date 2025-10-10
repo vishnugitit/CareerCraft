@@ -1,5 +1,6 @@
 import React from "react";
 import "./Hero.css";
+import logo from "./Logo.png";
 import { Rocket, Layout, CheckCircle, FileText, Globe } from "lucide-react";
 
 /*
@@ -62,7 +63,12 @@ export default function Hero({
         {/* Content */}
         <div className="hero-content">
           <div className="brand-row">
-            <div className="brand-badge">PM</div>
+            {/* <div className="brand-badge">PM</div> */}
+            {/* Logo Image */}
+            <div className="brand-badge">
+              <img src={logo} alt="Career Craft Logo" className="brand-logo" />
+            </div>
+
             <div>
               <div className="brand-name">Career Craft</div>
               <div className="brand-tagline">{brand.tagline}</div>

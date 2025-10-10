@@ -10,7 +10,9 @@
   --bg-bottom: #eef6ff;
   --content-bg: #ffffff;
   --text-dark: #0b2130;
-  --muted: #5b6b76;
+
+  --subline: #0b2130;
+
   --accent-a: #7c3aed; /* purple */
   --accent-b: #2563eb; /* blue */
   --cta-shadow: 0 14px 40px rgba(37, 99, 235, 0.12);
@@ -112,7 +114,8 @@ body {
 /* caption */
 .mock-caption {
   margin: 12px 12px 0 12px;
-  color: var(--muted);
+  color: var(--subline);
+
   font-size: 0.95rem;
 }
 
@@ -153,7 +156,7 @@ body {
   color: var(--text-dark);
 }
 .brand-tagline {
-  color: var(--muted);
+  color: var(--subline);
   font-size: 0.92rem;
 }
 
@@ -166,7 +169,7 @@ body {
   line-height: 1.04;
 }
 .hero-lead {
-  color: var(--muted);
+  color: var(--subline);
   max-width: 60ch;
   margin: 0;
   font-size: 1rem;
@@ -185,7 +188,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--muted);
+  color: var(--subline);
   font-size: 0.95rem;
 }
 .feat-icon {
@@ -235,7 +238,7 @@ body {
 
 /* brand meta */
 .brand-meta {
-  color: var(--muted);
+  color: var(--subline);
   font-size: 0.92rem;
   margin-top: 6px;
 }
@@ -359,4 +362,46 @@ body {
       padding-top: calc(64px + 20px);
     }
   }
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+
+  /* Responsive size */
+  width: clamp(40px, 5vw, 70px);
+  height: clamp(40px, 5vw, 70px);
+
+  /* Smooth transitions */
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border 0.25s ease;
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effects */
+.brand-badge:hover {
+  border: 2px solid #2575fc; /* professional blue border */
+  box-shadow: 0 6px 18px rgba(37, 117, 252, 0.3);
+  transform: scale(1.08); /* subtle zoom */
+}
+
+.brand-badge:hover .brand-logo {
+  transform: rotate(-5deg) scale(1.05); /* playful tilt */
+}
+
+/* Active / Click effect */
+.brand-badge:active {
+  transform: scale(0.95); /* press-down feel */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }

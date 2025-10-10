@@ -39,6 +39,8 @@ a{color:${accent};text-decoration:none}
 </html>`;
 };
 
+
+
 // Generate Templates
 const allTemplates = (() => {
   const categories = ["Basic", "Pro", "Premium"];
@@ -49,6 +51,7 @@ const allTemplates = (() => {
       templates.push({
         id,
         category: cat,
+   
         title: `${cat} Template ${i}`,
         subtitle: `A ${cat.toLowerCase()} portfolio layout — variation ${i}`,
         color:

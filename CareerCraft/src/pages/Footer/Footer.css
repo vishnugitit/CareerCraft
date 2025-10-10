@@ -395,3 +395,38 @@ select {
 .subscribe-btn {
   width: 100%;
 }
+
+/* Logo background setup */
+.bg-logo {
+  background-image: url("./Logo.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain; /* always show whole logo */
+}
+
+/* Brand badge container */
+.brand-badge.bg-logo {
+  display: inline-block;
+  width: clamp(48px, 6.5vw, 96px);
+  height: clamp(48px, 6.5vw, 96px);
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 8%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: #fff; /* fallback */
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border 0.28s ease;
+  cursor: pointer;
+}
+
+/* Hover effects */
+.brand-badge.bg-logo:hover {
+  border: 2px solid #2575fc; /* professional blue border */
+  box-shadow: 0 6px 18px rgba(37, 117, 252, 0.3);
+  transform: scale(1.08) rotate(-5deg); /* playful tilt + subtle zoom */
+}
+
+/* Active / Click effect */
+.brand-badge.bg-logo:active {
+  transform: scale(0.95); /* press-down feel */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}

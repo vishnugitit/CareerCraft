@@ -2,6 +2,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./Footer.css";
 import { Linkedin, Github, Twitter, Mail } from "lucide-react";
+
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
@@ -12,9 +13,12 @@ import emailjs from "@emailjs/browser";
   VITE_EMAILJS_TEMPLATE_ID_CUSTOMER, VITE_EMAILJS_PUBLIC_KEY
 */
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_oc7r6q8";
-const TEMPLATE_ID_ADMIN = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_ADMIN || "template_9jrtorq";
-const TEMPLATE_ID_CUSTOMER = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_CUSTOMER || "template_wdlixie";
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "ufL4L475kqoQn_dO6";
+const TEMPLATE_ID_ADMIN =
+  import.meta.env.VITE_EMAILJS_TEMPLATE_ID_ADMIN || "template_9jrtorq";
+const TEMPLATE_ID_CUSTOMER =
+  import.meta.env.VITE_EMAILJS_TEMPLATE_ID_CUSTOMER || "template_wdlixie";
+const PUBLIC_KEY =
+  import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "ufL4L475kqoQn_dO6";
 
 export default function Footer({
   brand = "Career Craft",
@@ -33,7 +37,11 @@ export default function Footer({
   },
 }) {
   const formRef = useRef(null);
-  const [modal, setModal] = useState({ open: false, type: "info", message: "" });
+  const [modal, setModal] = useState({
+    open: false,
+    type: "info",
+    message: "",
+  });
   const [sending, setSending] = useState(false);
   const timeoutRef = useRef(null);
 
@@ -64,8 +72,12 @@ export default function Footer({
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    const name = e.target.elements.name ? e.target.elements.name.value.trim() : "";
-    const email = e.target.elements.email ? e.target.elements.email.value.trim() : "";
+    const name = e.target.elements.name
+      ? e.target.elements.name.value.trim()
+      : "";
+    const email = e.target.elements.email
+      ? e.target.elements.email.value.trim()
+      : "";
     const phoneEl = e.target.elements.phone;
     const phone = phoneEl ? phoneEl.value.trim() : "";
 
@@ -110,7 +122,12 @@ export default function Footer({
         // admin notification (sent to your inbox via the admin template)
         emailjs.send(SERVICE_ID, TEMPLATE_ID_ADMIN, adminParams, PUBLIC_KEY),
         // customer welcome (template should be configured to send to {{email}} or use to_email)
-        emailjs.send(SERVICE_ID, TEMPLATE_ID_CUSTOMER, customerParams, PUBLIC_KEY),
+        emailjs.send(
+          SERVICE_ID,
+          TEMPLATE_ID_CUSTOMER,
+          customerParams,
+          PUBLIC_KEY
+        ),
       ]);
 
       setSending(false);
@@ -119,7 +136,10 @@ export default function Footer({
     } catch (err) {
       console.error("EmailJS Error (one or both sends failed):", err);
       setSending(false);
-      showModal("error", "Subscription saved but failed to send emails. Try again later.");
+      showModal(
+        "error",
+        "Subscription saved but failed to send emails. Try again later."
+      );
     }
   };
 
@@ -130,8 +150,13 @@ export default function Footer({
           <div className="pm-row">
             {/* Brand & Subscribe */}
             <div className="pm-brand">
-              <a href="/" className="brand-link" aria-label={`${brand} homepage`}>
-                <div className="logo">PM</div>
+              <a
+                href="/"
+                className="brand-link"
+                aria-label={`${brand} homepage`}
+              >
+                {/* Logo Image */}
+                <button class="brand-badge bg-logo" aria-label="Brand"></button>
                 <div className="brand-text">
                   <h3>{brand}</h3>
                   <p>Create beautiful resumes & portfolios in minutes.</p>
@@ -165,7 +190,11 @@ export default function Footer({
                   placeholder="Enter your phone number"
                   className="subscribe-input"
                 /> */}
-                <button type="submit" className="subscribe-btn" disabled={sending}>
+                <button
+                  type="submit"
+                  className="subscribe-btn"
+                  disabled={sending}
+                >
                   {sending ? "Sending..." : "Subscribe"}
                 </button>
               </form>
@@ -213,13 +242,16 @@ export default function Footer({
                 </SocialIcon>
               </div>
               <p className="meta">
-                Built with ❤️ by <strong>{brand}</strong>. Responsive · Accessible · Beautiful.
+                Built with ❤️ by <strong>{brand}</strong>. Responsive ·
+                Accessible · Beautiful.
               </p>
             </div>
           </div>
 
           <div className="pm-bottom">
-            <p>© {new Date().getFullYear()} {brand}. All rights reserved.</p>
+            <p>
+              © {new Date().getFullYear()} {brand}. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
@@ -230,7 +262,9 @@ export default function Footer({
           <div className={`pm-modal pm-modal-${modal.type}`}>
             <p>{modal.message}</p>
             <button
-              onClick={() => setModal({ open: false, type: "info", message: "" })}
+              onClick={() =>
+                setModal({ open: false, type: "info", message: "" })
+              }
               className="pm-modal-close"
             >
               OK
