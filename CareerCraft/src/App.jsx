@@ -1,7 +1,6 @@
 // src/App.jsx
 import React, { useState, useRef, useEffect } from "react";
 // IMPORT the namespaced CSS file
-
 import Header from "./pages/Header/Header";
 
 
