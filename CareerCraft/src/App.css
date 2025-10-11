@@ -429,3 +429,174 @@ body.debug * {
 
 /*  Get Started Section*/
 
+/* ===========================
+   PORTABLE FIX: Remove small/medium gaps + responsive safety
+   Paste this at the end of your main stylesheet (App.css / index.css)
+   =========================== */
+
+/* ---------- Ensure root background variable is defined and consistent ---------- */
+:root {
+  /* Make sure there's always a fallback bg variable used by body */
+  --bg-color: var(--body-color, #ffffff);
+}
+
+/* ---------- Global reset consistency (no duplicate margin surprises) ---------- */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* safer than clip for older browsers */
+  box-sizing: border-box;
+}
+
+/* Make sure all elements inherit the border-box model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ---------- Use the correct body background & remove margins that caused gaps ---------- */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* REMOVE any bottom margin added for small screens (override) */
+  margin: 0 !important;
+  padding: 0;
+}
+
+/* ---------- If you have a fixed header, reserve space without creating page gap ----------
+   Use a content wrapper (recommended class: .app-container or main). This avoids
+   adding margins to <body> which caused your gap on small/medium screens.
+*/
+.app-container,
+.main-content,
+main {
+  min-height: calc(100vh - var(--header-height));
+  /* allow content to grow beyond viewport when needed */
+  display: block;
+}
+
+/* If header is not fixed, this calc is still safe (it will just be slightly smaller) */
+
+/* ---------- Safe bottom spacing for content (instead of body margin) ----------
+   Use this when you have a sticky/fixed bottom element (like mobile nav).
+   Add .space-for-footer to the main wrapper only when a fixed footer exists.
+*/
+.space-for-footer {
+  padding-bottom: var(--header-height); /* reuse header height or set a custom var */
+}
+
+/* ---------- Prevent unintended horizontal overflow (common cause of gaps) ---------- */
+.container,
+.site-container,
+.app-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow: visible; /* allow dropdowns, but avoid forcing layout width */
+  min-width: 0; /* important for flex children shrinking */
+}
+
+/* Neutralize any library or component that uses 100vw (causes horizontal scroll) */
+*[style*="100vw"],
+.force-100pct {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* ---------- Sections: avoid extra bottom gaps on small screens ---------- */
+.section {
+  padding-top: 3.5rem;   /* leave a little breathing room from header */
+  padding-bottom: 2rem;  /* keep bottom consistent on all screens */
+}
+
+/* If you use sections as the first element after header, ensure no double-gap */
+.header + .section,
+nav + .section {
+  padding-top: calc(1.2rem + var(--header-height));
+}
+
+/* ---------- Mobile specific fixes (override problematic rules) ---------- */
+@media screen and (max-width: 768px) {
+  /* remove any earlier rule that set body margin for small screens */
+  body {
+    margin: 0 !important;
+  }
+
+  /* Make containers slightly tighter for small screens */
+  .container {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+
+  /* Ensure header reserve doesn't push content out of viewport */
+  .app-container,
+  main {
+    min-height: calc(100vh - var(--header-height));
+  }
+
+  /* Reduce section top spacing on very small devices to remove visible gaps */
+  .section {
+    padding-top: calc(0.75rem + var(--header-height));
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* Very small screens */
+@media screen and (max-width: 420px) {
+  .section {
+    padding-top: calc(0.5rem + var(--header-height));
+    padding-bottom: 1rem;
+  }
+
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+/* ---------- Mobile menu safety (no layout jumps) ---------- */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-6%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.22s ease, opacity 0.18s ease;
+  z-index: 2000;
+  padding: calc(var(--header-height) + 1rem) 1rem 2rem; /* ensure menu doesn't push content */
+}
+.mobile-menu.open {
+  transform: none;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- Debug helper (optional) ----------
+   Toggle body.debug while inspecting layout; remove in production
+*/
+body.debug * { outline: 1px dashed rgba(0,0,0,0.06); }
+
+/* ---------- Quick checklist (for you) ----------
+   1) Remove or comment-out any older rule that does:
+        body { margin: 0 0 var(--header-height) 0; }
+      — that exact line was the likely cause of the extra vertical gap.
+   2) Apply .app-container (or main) around your site content if not present:
+        <div class="app-container"> ... all page sections ... </div>
+   3) If you have a fixed header, keep it height-synced with --header-height.
+   4) If you still see a gap, check for any element near the top using margin-top (eg: h1)
+      — sometimes the first child margin collapses. If so, add .section { padding-top: 0.125rem; }
+*/
+
+/* End of responsive gap-fix patch */
