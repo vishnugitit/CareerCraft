@@ -93,12 +93,14 @@ const Header = () => {
             <a href="#pricing" className="nav-link">
               Pricing
             </a>
-            <a href="#contact" className="nav-link">
-              Contact
-            </a>
+           
             <a href="#GetStarted" className="btn-primary">
               Get Started
             </a>
+ <a href="#contact-data" className="nav-link">
+              Contact
+            </a>
+
             <a href="#subscribed" className="nav-link">
               Subscribe
             </a>
@@ -142,8 +144,17 @@ const Header = () => {
               <FaDollarSign className="menu-icon" /> Pricing
             </a>
           </li>
+           <li>
+            <a
+              href="#GetStarted"
+              // className="menu-getstarted"
+              onClick={closeMenu}
+            >
+              <FaPlay className="menu-icon" /> Get Started
+            </a>
+          </li>
           <li>
-            <a href="#contact" onClick={closeMenu}>
+            <a href="#contact-data" onClick={closeMenu}>
               <FaEnvelope className="menu-icon" /> Contact
             </a>
           </li>
@@ -157,15 +168,7 @@ const Header = () => {
               <FaPlay className="menu-icon" /> Get Started
             </a> */}
           {/* </li> */}
-          <li>
-            <a
-              href="#GetStarted"
-              // className="menu-getstarted"
-              onClick={closeMenu}
-            >
-              <FaPlay className="menu-icon" /> Get Started
-            </a>
-          </li>
+         
 
           <li>
             <a href="#subscribed" onClick={closeMenu}>

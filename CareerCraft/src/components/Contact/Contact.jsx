@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import 'boxicons/css/boxicons.min.css';
 import emailjs from "@emailjs/browser";
 import "./contact.css";
 import "./alert.css";
@@ -31,7 +30,7 @@ const Contact = () => {
 
     if (name.trim() && email.trim() && project.trim()) {
       emailjs
-        .sendForm("service_myxbp1c", "template_oj36uhk", form.current, {
+        .sendForm("service_f9f6ffx", "template_2t6pr9l", form.current, {
           publicKey: "oQjjRjplihvV0zZOA",
         })
         .then(() => {
@@ -50,7 +49,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact section" id="contact">
+    <section className="contact section" id="contact-data">
       <h2 className="section__title">Get in touch</h2>
       <span className="section__subtitle">Contact Me</span>
 
@@ -98,9 +97,7 @@ const Contact = () => {
 
             {/* LinkedIn */}
             <div className="contact__card">
-            {/* <i className="fab fa-linkedin contact-icon" id="linkedin"></i> */}
-            <i className="bx bxl-linkedin contact-icon" id="linkedin"></i>
-
+              <i className="fab fa-linkedin contact-icon" id="linkedin"></i>
               <h3 className="contact__card-title">LinkedIn</h3>
               <span className="contact__card-data">
                 VISHNU VARDHAN JANGAM
